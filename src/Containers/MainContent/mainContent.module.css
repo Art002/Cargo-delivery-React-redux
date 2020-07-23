@@ -1,0 +1,13 @@
+.contentBlock {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.wrapper {
+    width: 100%;
+    background: url(./../../Images/mainBg.png);
+    min-height: 100vh;
+}

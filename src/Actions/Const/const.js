@@ -1,0 +1,9 @@
+export const GET_TRANSPORT = 'GET_TRANSPORT';
+export const SUBMENU_CLASSES = 'SUBMENU_CLASSES';
+export const HIDE_SUBMENU = 'HIDE_SUBMENU';
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const CHANGE_VALUE = 'CHANGE_VALUE';
+export const CLICK = 'CLICK';
+export const ADD_CLASS = 'ADD_CLASS';
+export const FILTER_CONTENT = 'FILTER_CONTENT';
+export const FILTER_REMOVE = 'FILTER_REMOVE';

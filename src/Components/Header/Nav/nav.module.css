@@ -1,0 +1,43 @@
+.navMenu {
+    width: 600px;
+    color: #ffffff;
+}
+.navMenu ul li {
+    list-style: none;
+    display: inline;
+    padding: 20px 15px 20px 15px;
+    font-weight: 500;
+}
+.mainMenuList {
+    margin-top: 30px;
+}
+.subMenuList {
+    position: absolute;
+    top: 50px;
+    left: -80px;
+    display: none;
+    z-index: 200;
+}
+.subMenuListShow {
+    display: block;
+}
+.subMenuList a {
+    width: 200px;
+    display: block;
+    text-decoration: none;
+    color: #ffffff;
+    background: #35286b;
+    padding: 10px 0 10px 0;
+}
+.subMenuList hr {
+    height: 1px;
+    background: linear-gradient(0.25turn, #35286b, #cccccc, #35286b);
+    border: 0;
+    margin: 0;
+}
+.subMenuList a:last-child hr {
+    display: none;
+}
+.subMenuTarget {
+    position: relative;
+}

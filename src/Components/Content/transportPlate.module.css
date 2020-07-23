@@ -1,0 +1,88 @@
+.transportItem {
+    width: 350px;
+    margin: 20px;
+    border-radius: 5px;
+}
+.transportItem h3 {
+    margin-top: 0;
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: 0.2px;
+}
+.wrapper {
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    padding: 20px;
+    box-sizing: border-box;
+    background: linear-gradient(0deg,rgba(0,0,0,0.75) 0,rgba(0,0,0,0.75) 3%,rgba(0, 0, 0, 0.2) 100%);
+    height: 100%;
+    color: #ffffff;
+    border-radius: 5px;
+    position: relative;
+    padding-bottom: 80px;
+}
+.buttonBlock {
+    display: flex;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+.manipulator {
+    background: url('./../../Images/manipulator.jpg');
+    background-size: cover; 
+}
+.dumpTruck {
+    background: url('./../../Images/dumpTruck.jpg');
+    background-size: cover; 
+}
+.skipLoader {
+    background: url('./../../Images/skipLoader.jpg');
+    background-size: cover; 
+}
+.garbageTruck {
+    background: url('./../../Images/garbageTruck.jpg');
+    background-size: cover; 
+}   
+.tailLift {
+    background: url('./../../Images/tailLift.jpg');
+    background-size: cover; 
+}
+.MANBoard {
+    background: url('./../../Images/MANBoard.jpg');
+    background-size: cover; 
+}
+.length {
+    background: url('./../../Images/length.jpg');
+    background-size: cover; 
+}
+.trawl {
+    background: url('./../../Images/trawl.jpg');
+    background-size: cover; 
+}
+.eurotrack {
+    background: url('./../../Images/eurotrack.jpg');
+    background-size: cover; 
+}
+.quarryExcavator {
+    background: url('./../../Images/quarryExcavator.jpg');
+    background-size: cover; 
+}
+.backhoeLoader {
+    background: url('./../../Images/backhoeLoader.jpg');
+    background-size: cover; 
+}
+.mixer {
+    background: url('./../../Images/mixer.jpg');
+    background-size: cover; 
+}
+.truckCrane {
+    background: url('./../../Images/truckCrane.jpg');
+    background-size: cover; 
+}
+.timberCarrier {
+    background: url('./../../Images/timberCarrier.jpg');
+    background-size: cover; 
+}
+.gazelle {
+    background: url('./../../Images/gazelle.jpg');
+    background-size: cover; 
+}

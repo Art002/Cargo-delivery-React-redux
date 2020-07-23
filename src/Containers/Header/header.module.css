@@ -1,0 +1,14 @@
+.header {
+    display: flex;
+    background: linear-gradient(45deg, rgb(23, 27, 38), rgb(41, 43, 74));
+    height: 80px;
+}
+.greadientBorder {
+    height: 1px;
+    background: linear-gradient(0.25turn, #35286b, #cccccc, #35286b);
+    border: 0;
+    width: 100%;
+    position: absolute;
+    top: 72px;
+    z-index: 100;
+}

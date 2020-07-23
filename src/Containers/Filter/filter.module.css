@@ -1,0 +1,34 @@
+.filterWrapper {
+    background: #171b26;
+    color: #ffffff;
+    padding-top: 30px;
+}
+.filterBlock {
+    width: 600px;
+    margin: 0 auto;
+    background: #432254;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    border-radius: 40px;
+}
+.filterBlock h4 {
+    margin: 0;
+}
+.filterList {
+    list-style: none;
+    margin: 0;
+    margin-top: 30px;
+    padding: 0;
+}
+.filterListItem {
+    display: inline;
+    padding: 10px 15px 10px 15px;
+    margin-left: 7px;
+    margin-right: 7px;
+    background: #21092d;
+    border-radius: 30px;
+    cursor: pointer;
+}
+.itemClicked {
+    background: #8c3bb5;
+}
