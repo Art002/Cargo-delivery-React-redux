@@ -21,11 +21,13 @@ export function fetchTransport(transport){
 
 export function pushClasses(){
     return {
-        type: SUBMENU_CLASSES
+        type: SUBMENU_CLASSES,
+        subMenuListShow: 'subMenuListShow'
     }
 }
 export function hideSubMenu(){
     return {
-        type: HIDE_SUBMENU
+        type: HIDE_SUBMENU,
+        subMenuList: 'subMenuList'
     }
 }

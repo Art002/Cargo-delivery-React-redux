@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import TransportPlate from './../../Components/Content/transportPlate';
 import { addToCart } from './../../Actions/mainContent';
+import { getTransport } from './../../Selectors/selectors';
 import classes from './mainContent.module.css';
 
 const MainContent = ({ transport, addToCart }) => {
@@ -12,11 +13,12 @@ const MainContent = ({ transport, addToCart }) => {
                                content={content} 
                                clas={className}
                                id={id}
-                               addToCart={addToCart} />
+                               addToCart={addToCart} 
+                />
     })
     return (
-        <div className={classes.wrapper}>
-            <div className={classes.contentBlock}>{content}</div>
+        <div className={classes.wrapper}>        
+                <div className={classes.contentBlock}>{content}</div>
         </div>
     )
 }
@@ -28,7 +30,7 @@ MainContent.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        transport: state.header.transport
+        transport: getTransport(state)
     }
 }
 const mapDispatchToProps = dispatch => {

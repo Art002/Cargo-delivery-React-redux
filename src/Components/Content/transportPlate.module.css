@@ -26,6 +26,9 @@
     bottom: 20px;
     left: 20px;
 }
+.buttonBlock a button {
+    cursor: pointer;
+}
 .manipulator {
     background: url('./../../Images/manipulator.jpg');
     background-size: cover; 

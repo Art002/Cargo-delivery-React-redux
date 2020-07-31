@@ -1,14 +1,16 @@
 import { GET_TRANSPORT, 
          SUBMENU_CLASSES, 
          HIDE_SUBMENU, 
-         CHANGE_VALUE, 
+         CHANGE_VALUE,
+         SET_TOTAL, 
          FILTER_CONTENT, 
          FILTER_REMOVE } from './../Actions/Const/const';
 
 const initialState = {
     transport: [],
     subMenuClasses: ['subMenuList'],
-    transportCopy: []
+    transportCopy: [],
+    total: 0
 }
 
 export default function header(state = initialState, action){
@@ -22,12 +24,12 @@ export default function header(state = initialState, action){
         case SUBMENU_CLASSES:
             return {
                 ...state,
-                subMenuClasses: [...state.subMenuClasses, 'subMenuListShow']
+                subMenuClasses: [...state.subMenuClasses, action.subMenuListShow]
             }
         case HIDE_SUBMENU:
             return {
                 ...state,
-                subMenuClasses: ['subMenuList']
+                subMenuClasses: [action.subMenuList]
             }
         case CHANGE_VALUE:
             return {
@@ -41,6 +43,11 @@ export default function header(state = initialState, action){
                     }
                     return item
                 })
+            }
+        case SET_TOTAL: 
+            return {
+                ...state,
+                total: action.result
             }
         case FILTER_CONTENT:
             return {

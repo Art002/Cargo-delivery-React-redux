@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import { click, hideFilter } from './../../Actions/filter';
+import { getTransport, getIsSelected } from './../../Selectors/selectors';
 import classes from './filter.module.css';
 
 let cx = classNames.bind(classes);
@@ -41,8 +42,8 @@ Filter.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        transport: state.header.transport,
-        isSelected: state.filter.isSelected
+        transport: getTransport(state),
+        isSelected: getIsSelected(state)
     }
   }
 const mapDispatchToProps = (dispatch) => {

@@ -7,3 +7,5 @@ export const CLICK = 'CLICK';
 export const ADD_CLASS = 'ADD_CLASS';
 export const FILTER_CONTENT = 'FILTER_CONTENT';
 export const FILTER_REMOVE = 'FILTER_REMOVE';
+export const SET_TOTAL = 'GET_TOTAL';
+export const REMOVE_ITEM = 'REMOVE_ITEM';

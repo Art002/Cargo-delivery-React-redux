@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { transportList, pushClasses, hideSubMenu } from './../../Actions/header';
 import Logo from '../../Components/Header/Logo/logo';
-import Nav from '../../Components/Header/Nav/nav'
+import Nav from '../../Components/Header/Nav/nav';
+import { getTransport, getSubMenuClasses } from './../../Selectors/selectors';
 import classes from './header.module.css';
 
-const Header = ({ getTransport, transport, pushClasses, subMenuClasses, hideSubMenu }) => {
+const Header = ({ getTransportList, transport, pushClasses, subMenuClasses, hideSubMenu }) => {
     useEffect(() => {
-        getTransport()
+        getTransportList()
     }, [])
     return(
         <header className={classes.header}>
@@ -24,7 +25,7 @@ const Header = ({ getTransport, transport, pushClasses, subMenuClasses, hideSubM
 
 Header.propTypes = {
     transport: PropTypes.array,
-    getTransport: PropTypes.func,
+    getTransportList: PropTypes.func,
     pushClasses: PropTypes.func,
     subMenuClasses: PropTypes.array,
     hideSubMenu: PropTypes.func
@@ -32,13 +33,13 @@ Header.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        transport: state.header.transport,
-        subMenuClasses: state.header.subMenuClasses
+        transport: getTransport(state),
+        subMenuClasses: getSubMenuClasses(state)
     }
   }
 const mapDispatchToProps = (dispatch) => {
     return {
-        getTransport: () => dispatch(transportList()),
+        getTransportList: () => dispatch(transportList()),
         pushClasses: () => dispatch(pushClasses()),
         hideSubMenu: () => dispatch(hideSubMenu())
     }

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from "react-router";
+import { getTransport } from './../../Selectors/selectors';
 import classes from './transportPage.module.css';
 
 const TransportPage = ({ transport, match }) => {
@@ -31,7 +32,7 @@ TransportPage.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        transport: state.header.transport
+        transport: getTransport(state)
     }
   }
 
