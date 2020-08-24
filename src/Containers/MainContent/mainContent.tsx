@@ -44,7 +44,7 @@ const mapDispatchToProps = (dispatch: Dispatch<MainContentType>): MapDispatchPro
         addToCart: (id) => dispatch(addToCart(id))
     }
 }
-export default connect<MapStatePropsTypes, MapDispatchPropsType, null, RootState>(
+export default connect(
     mapStateToProps, 
     mapDispatchToProps
 )(MainContent)

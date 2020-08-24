@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { withRouter, RouteComponentProps } from "react-router";
 import { getTransport } from './../../Selectors/selectors';
 import { TransportItemType } from './../../Redusers/header';
 import { RootState } from './../../Redusers/rootRedusers';
 import classes from './transportPage.module.css';
-import { compose } from 'redux';
 
 type TransportPageParams = {
     id: string
@@ -42,6 +42,6 @@ const mapStateToProps = (state: RootState): MapStatePropsTypes => {
   }
 
 export default compose(
-    connect<MapStatePropsTypes, null, null, RootState>(mapStateToProps),
+    connect(mapStateToProps),
     withRouter
-)(TransportPage)
+)(TransportPage) as FC

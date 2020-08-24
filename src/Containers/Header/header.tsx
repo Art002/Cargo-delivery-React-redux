@@ -51,7 +51,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, HeaderActionsType>
     }
   }
 
-export default connect<MapStatePropsTypes, MapDispatchPropsType, null, RootState>(
+export default connect(
     mapStateToProps, 
     mapDispatchToProps
 )(Header)

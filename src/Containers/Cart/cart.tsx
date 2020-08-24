@@ -57,8 +57,8 @@ const Cart: FC<PropsType> = ({ inCart, transport, changeValue, getTotal, totalSu
             </span>
           </div>
         </div>
-        )   
-    }   
+        )  
+    }  
   })
   const result: number = getTotal(total)
   useEffect(() => {
@@ -94,7 +94,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<RootState, any, CartActionTy
     }
 }
 
-export default connect<MapStatePropsTypes, MapDispatchPropsType, null, RootState>(
+export default connect(
     mapStateToProps, 
     mapDispatchToProps
-)(Cart)
+)(Cart) as FC
