@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { withRouter } from "react-router";
+import { withRouter, RouteComponentProps } from "react-router";
 import { getTransport } from './../../Selectors/selectors';
+import { TransportItemType } from './../../Redusers/header';
+import { RootState } from './../../Redusers/rootRedusers';
 import classes from './transportPage.module.css';
+import { compose } from 'redux';
 
-const TransportPage = ({ transport, match }) => {
+type TransportPageParams = {
+    id: string
+}
+type TransportPageRouterProps = RouteComponentProps<TransportPageParams>
+type MapStatePropsTypes = {
+    transport: Array<TransportItemType>
+}
+type PropsType = MapStatePropsTypes & TransportPageRouterProps
+
+const TransportPage: FC<PropsType> = ({ transport, match }) => {
     const urlId = match.params.id
     const content = transport.map(({ id, content }) => {
         if(id === urlId){
@@ -20,20 +31,17 @@ const TransportPage = ({ transport, match }) => {
                 </div>
             )
         }
-        
     })
     return <div>{content}</div>
 }
 
-TransportPage.propTypes = {
-    transport: PropTypes.array,
-    match: PropTypes.object
-  }
-
-const mapStateToProps = state => {
+const mapStateToProps = (state: RootState): MapStatePropsTypes => {
     return {
         transport: getTransport(state)
     }
   }
 
-export default connect(mapStateToProps)(withRouter(TransportPage))
+export default compose(
+    connect<MapStatePropsTypes, null, null, RootState>(mapStateToProps),
+    withRouter
+)(TransportPage)

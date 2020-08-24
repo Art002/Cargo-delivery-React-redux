@@ -3,8 +3,11 @@ import header from './header';
 import mainContent from './mainContent';
 import filter from './filter';
 
-export default combineReducers({
+const rootReducer = combineReducers({
     header,
     mainContent,
     filter
   })
+
+export type RootState = ReturnType<typeof rootReducer>
+export default rootReducer

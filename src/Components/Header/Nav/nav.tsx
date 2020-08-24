@@ -1,12 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
+import { TransportItemType } from './../../../Redusers/header';
 import classes from './nav.module.css';
 
+type NavPropsType = {
+    transport: Array<TransportItemType>
+    subMenuClasses: Array<string>
+    pushClasses: () => void
+    hideSubMenu: () => void
+}
 
-const Nav = ({ transport, pushClasses, subMenuClasses , hideSubMenu }) => {
+const Nav: FC<NavPropsType> = ({ transport, pushClasses, subMenuClasses , hideSubMenu }) => {
     const subMenu = transport.map(({ name, id }) => {
-        return <React.Fragment key={id}><NavLink to={id}>
+        return  <React.Fragment key={id}><NavLink to={id}>
                     <li className={classes.subMenuItem}>{name}</li>
                 </NavLink><hr/></React.Fragment>
     })
@@ -32,12 +38,5 @@ const Nav = ({ transport, pushClasses, subMenuClasses , hideSubMenu }) => {
         </nav>
     )
 }
-
-Nav.propTypes = {
-    transport: PropTypes.array,
-    pushClasses: PropTypes.func,
-    subMenuClasses: PropTypes.array,
-    hideSubMenu: PropTypes.func
-  }
 
 export default Nav

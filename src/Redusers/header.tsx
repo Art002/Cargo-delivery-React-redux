@@ -5,21 +5,44 @@ import { GET_TRANSPORT,
          SET_TOTAL, 
          FILTER_CONTENT, 
          FILTER_REMOVE } from './../Actions/Const/const';
+import { HeaderActionsType } from './../Actions/header';
+import { FilterActionsType } from './../Actions/filter';
+import { CartActionType } from './../Actions/cart';
 
-const initialState = {
+export type TransportItemType = {
+    className: string,
+    content: string,
+    id: string,
+    name: string,
+    value: number,
+    weight: string
+}
+
+type InitialStateType = {
+    transport: Array<TransportItemType>,
+    subMenuClasses: Array<string>,
+    transportCopy: Array<TransportItemType>,
+    total: number
+}
+
+//type InitialStateType = typeof initialState
+const initialState: InitialStateType = {
     transport: [],
-    subMenuClasses: ['subMenuList'],
+    subMenuClasses: ['subMenuList'] ,
     transportCopy: [],
     total: 0
 }
 
-export default function header(state = initialState, action){
+export default function header(
+        state: InitialStateType = initialState,
+        action: HeaderActionsType | FilterActionsType | CartActionType
+    ): InitialStateType{
     switch(action.type){
         case GET_TRANSPORT:
             return {
                 ...state,
-                transport: action.transport,
-                transportCopy: action.transport
+                transport: [...action.transport],
+                transportCopy: [...action.transport]
             }
         case SUBMENU_CLASSES:
             return {
@@ -34,7 +57,7 @@ export default function header(state = initialState, action){
         case CHANGE_VALUE:
             return {
                 ...state,
-                transport: state.transport.map((item, i) => {
+                transport: state.transport.map((item: TransportItemType, i: number) => {
                     if(i === action.i){
                         return {
                             ...item,
@@ -52,8 +75,8 @@ export default function header(state = initialState, action){
         case FILTER_CONTENT:
             return {
                 ...state,
-                transport: state.transportCopy.filter(({ weight }) => {
-                        return weight === action.name
+                transport: state.transportCopy.filter((item: TransportItemType) => {
+                        return item.weight === action.name
                 })
             }
         case FILTER_REMOVE:

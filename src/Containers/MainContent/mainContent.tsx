@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { Dispatch } from 'redux';
 import TransportPlate from './../../Components/Content/transportPlate';
 import { addToCart } from './../../Actions/mainContent';
 import { getTransport } from './../../Selectors/selectors';
+import { TransportItemType } from './../../Redusers/header';
+import { RootState } from './../../Redusers/rootRedusers';
+import { MainContentType } from './../../Actions/mainContent';
 import classes from './mainContent.module.css';
 
-const MainContent = ({ transport, addToCart }) => {
+type MapDispatchPropsType = {
+    addToCart: (id: string) => void
+  }
+type MapStatePropsTypes = {
+    transport: Array<TransportItemType> 
+}
+type PropsType = MapDispatchPropsType & MapStatePropsTypes
+
+const MainContent: FC<PropsType> = ({ transport, addToCart }) => {
     const content = transport.map(({ name, content, className, id }) => {
         return <TransportPlate key={id} 
                                name={name} 
@@ -23,19 +34,17 @@ const MainContent = ({ transport, addToCart }) => {
     )
 }
 
-MainContent.propTypes = {
-    transport: PropTypes.array,
-    addToCart: PropTypes.func
-  }
-
-const mapStateToProps = state => {
+const mapStateToProps = (state: RootState): MapStatePropsTypes => {
     return {
         transport: getTransport(state)
     }
 }
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: Dispatch<MainContentType>): MapDispatchPropsType => {
     return {
         addToCart: (id) => dispatch(addToCart(id))
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(MainContent)
+export default connect<MapStatePropsTypes, MapDispatchPropsType, null, RootState>(
+    mapStateToProps, 
+    mapDispatchToProps
+)(MainContent)

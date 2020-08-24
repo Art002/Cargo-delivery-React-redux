@@ -1,8 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import classes from './input.module.css';
 
-const Input = ({ type, styles, value, onChange, i }) => {    
+type InputPropsType = {
+  type: string
+  styles: string
+  value: number
+  onChange: (value: number, i: number) => void
+  i: number
+}
+
+const Input: FC<InputPropsType> = ({ type, styles, value, onChange, i }) => {    
     return <input type={type} 
                   className={classes[styles]} 
                   value={value}
@@ -10,12 +17,5 @@ const Input = ({ type, styles, value, onChange, i }) => {
                   >
            </input>
 }
-
-Input.propTypes = {
-    type: PropTypes.string,
-    styles: PropTypes.string,
-    onChange: PropTypes.func,
-    i: PropTypes.number
-  }
 
 export default Input

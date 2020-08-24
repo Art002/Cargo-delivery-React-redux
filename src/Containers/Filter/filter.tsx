@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
-import PropTypes from 'prop-types';
-import { click, hideFilter } from './../../Actions/filter';
+import { ThunkDispatch } from "redux-thunk";
+import { click, hideFilter, FilterActionsType } from './../../Actions/filter';
 import { getTransport, getIsSelected } from './../../Selectors/selectors';
+import { RootState } from './../../Redusers/rootRedusers';
+import { TransportItemType } from './../../Redusers/header';
+import { IsselectedType } from './../../Redusers/filter';
 import classes from './filter.module.css';
 
 let cx = classNames.bind(classes);
 
-const Filter = ({ isSelected, click, hideFilter }) => {
+type MapDispatchPropsType = {
+    click: (i: number, name: string) => void,
+    hideFilter: (i: number) => void
+}
+type MapStatePropsTypes = {
+    transport: Array<TransportItemType>,
+    isSelected: Array<IsselectedType>
+}
+type PropsType = MapDispatchPropsType & MapStatePropsTypes
+
+const Filter: FC<PropsType> = ({ isSelected, click, hideFilter }) => {
     const selected = isSelected.map(({ isClicked, label, name }, i) => {
         return (
             <li className={cx(
@@ -34,23 +47,20 @@ const Filter = ({ isSelected, click, hideFilter }) => {
     )
 }
 
-Filter.propTypes = {
-    isSelected: PropTypes.array,
-    click: PropTypes.func,
-    hideFilter: PropTypes.func
-  }
-
-const mapStateToProps = state => {
+const mapStateToProps = (state: RootState): MapStatePropsTypes => {
     return {
         transport: getTransport(state),
         isSelected: getIsSelected(state)
     }
   }
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, FilterActionsType>): MapDispatchPropsType => {
     return {
         click: (i, name) => dispatch(click(i, name)),
         hideFilter: (i) => dispatch(hideFilter(i))
     }
   }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Filter)
+export default connect<MapStatePropsTypes, MapDispatchPropsType, null, RootState>(
+    mapStateToProps, 
+    mapDispatchToProps
+)(Filter)

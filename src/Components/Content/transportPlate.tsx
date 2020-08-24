@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import Button from './../Button/button';
 import classes from './transportPlate.module.css';
 
-const TransportPlate = ({ name, content, clas, id, addToCart }) => {
+type TransportPlatePropsType = {
+    name: string
+    content: string
+    clas: string
+    id: string
+    addToCart: (id: string) => void
+}
+
+const TransportPlate: FC<TransportPlatePropsType> = ({ name, content, clas, id, addToCart }) => {
     const styles=[classes[clas], classes.transportItem]
     return (
         <div className={styles.join(' ')}>
@@ -13,7 +20,7 @@ const TransportPlate = ({ name, content, clas, id, addToCart }) => {
                 <p>{content}</p>
                 <div className={classes.buttonBlock}>
                     <NavLink to={id}>
-                        <Button text='Читать далее'/>
+                        <Button text='Читать далее' id={id} addToCart={addToCart}/>
                     </NavLink>
                     <NavLink to='/cart'>
                         <Button text='Заказать' id={id} addToCart={addToCart}/>
@@ -23,13 +30,5 @@ const TransportPlate = ({ name, content, clas, id, addToCart }) => {
         </div>
     )
 }
-
-TransportPlate.propTypes = {
-    name: PropTypes.string,
-    content: PropTypes.string,
-    clas: PropTypes.string,
-    id: PropTypes.string,
-    addToCart: PropTypes.func
-  }
 
 export default TransportPlate

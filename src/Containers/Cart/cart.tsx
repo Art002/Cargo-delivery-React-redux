@@ -1,15 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, FC } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { ThunkDispatch } from "redux-thunk";
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import Input from './../../Components/Input/input';
 import { changeValue, getTotal, findCoincidence, setTotal, removeFromCart } from './../../Actions/cart';
 import { getTransport, getTotalSum, getInCart } from './../../Selectors/selectors';
+import { RootState } from './../../Redusers/rootRedusers';
+import { CartActionType } from './../../Actions/cart';
+import { TransportItemType } from './../../Redusers/header';
 import classes from './cart.module.css';
 
-const Cart = ({ inCart, transport, changeValue, getTotal, totalSum, setTotal, removeFromCart }) => {
-  const total = []
-  const cartItem = transport.map(({ id, value }, i) => {
+type MapDispatchPropsType = {
+  changeValue: (value: number, i: number) => void,
+  getTotal: (total: Array<number>) => any,
+  findCoincidence: (id: string, inCart: Array<string>) => string | undefined,
+  setTotal: (result: number) => void,
+  removeFromCart: (id: string) => void
+}
+type MapStatePropsTypes = {
+  inCart: Array<string>,
+  transport: Array<TransportItemType>,
+  totalSum: number
+}
+type PropsType = MapDispatchPropsType & MapStatePropsTypes
+
+const Cart: FC<PropsType> = ({ inCart, transport, changeValue, getTotal, totalSum, setTotal, removeFromCart }) => {
+  const total: Array<number> = []
+  const cartItem: Array<any> = transport.map(({ id, value }, i) => {
     const sum = 120 * value
     const coincidence = findCoincidence(id, inCart)
     if(id === coincidence){
@@ -17,17 +34,17 @@ const Cart = ({ inCart, transport, changeValue, getTotal, totalSum, setTotal, re
       return (
         <div key={id} className={classes.cartContainer}>
           <div className={classes.cartItemImg}>
-            <img src={require(`./../../Images/${id}.jpg`)}/>
+            <img src={require(`./../../Images/${id}.jpg`)} alt={id}/>
           </div>
           <div className={classes.cartControls}>
             <ul>
               <li>
                 Количество часов: 
                 <Input styles='cartInput' 
-                        type='number' 
-                        onChange={changeValue} 
-                        value={value}
-                        i={i}
+                       type='number' 
+                       onChange={changeValue} 
+                       value={value}
+                       i={i}
                 />
               </li>
               <hr className={classes.divider}/>
@@ -43,7 +60,7 @@ const Cart = ({ inCart, transport, changeValue, getTotal, totalSum, setTotal, re
         )   
     }   
   })
-  const result = getTotal(total)
+  const result: number = getTotal(total)
   useEffect(() => {
     setTotal(result)
   },[result])
@@ -60,24 +77,14 @@ const Cart = ({ inCart, transport, changeValue, getTotal, totalSum, setTotal, re
   )
 }
 
-Cart.propTypes = {
-  inCart: PropTypes.array,
-  transport: PropTypes.array,
-  changeValue: PropTypes.func,
-  getTotal: PropTypes.func,
-  totalSum: PropTypes.number,
-  setTotal: PropTypes.func,
-  removeFromCart: PropTypes.func
-}
-
-const mapStateToProps = state => {
+const mapStateToProps = (state: RootState): MapStatePropsTypes => {
     return {
       inCart: getInCart(state),
       transport: getTransport(state),
       totalSum: getTotalSum(state)
     }
 }
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<RootState, any, CartActionType>): MapDispatchPropsType => {
     return {
       changeValue: (value, i) => dispatch(changeValue(value, i)),
       getTotal: (total) => dispatch(getTotal(total)),
@@ -87,4 +94,7 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+export default connect<MapStatePropsTypes, MapDispatchPropsType, null, RootState>(
+    mapStateToProps, 
+    mapDispatchToProps
+)(Cart)

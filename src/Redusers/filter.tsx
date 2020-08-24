@@ -1,5 +1,12 @@
 import { ADD_CLASS, FILTER_REMOVE } from './../Actions/Const/const';
+import { FilterActionsType } from './../Actions/filter';
 
+export type IsselectedType = {
+    name: string
+    label: string
+    isClicked: boolean
+}
+export type InitialStateType = typeof initialState
 const initialState = {
     isSelected: [
         {name: 'underThree', label: 'До 3', isClicked: false},
@@ -10,7 +17,7 @@ const initialState = {
     ]
 }
 
-export default function filter(state = initialState, action){
+export default function filter(state: InitialStateType = initialState, action: FilterActionsType): InitialStateType{
     switch(action.type){
         case ADD_CLASS:
             return {
