@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ChangeEvent } from 'react';
 import classes from './input.module.css';
 
 type InputPropsType = {
@@ -13,7 +13,7 @@ const Input: FC<InputPropsType> = ({ type, styles, value, onChange, i }) => {
     return <input type={type} 
                   className={classes[styles]} 
                   value={value}
-                  onChange={(e) => onChange(parseInt(e.target.value), i)}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(parseInt(e.target.value), i)}
                   >
            </input>
 }

@@ -12,13 +12,13 @@ const Cart = React.lazy(() => import('./Containers/Cart/cart'))
 const App: FC = () => {
   return (
     <div className="App">     
-        <Route path='*' render={() => Header}/>
+        <Route path='*' component={Header}/>
         <Suspense fallback={<Loading />}>
-          <Route path='/:id' render={() => TransportPage}/>
-          <Route path='/cart' render={() => Cart}/>
+          <Route path='/:id' component={TransportPage}/>
+          <Route path='/cart' component={Cart}/>
         </Suspense>
-        <Route exact path='/' render={() => Filter}/>
-        <Route exact path='/' render={() => MainContent}/>
+        <Route exact path='/' component={Filter}/>
+        <Route exact path='/' component={MainContent}/>
     </div>
   )
 }
